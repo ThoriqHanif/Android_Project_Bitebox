@@ -3,16 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
-        android:layout_margin="12dp">
+        app:cardElevation="0dp"
+        android:backgroundTint="#D0F3F2F2"
+        android:layout_marginBottom="10dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="8dp">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -30,26 +36,43 @@
                 android:layout_height="wrap_content"
                 android:text="Nama"
                 android:layout_marginStart="20dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="@+id/imageView" />
 
             <TextView
-                android:id="@+id/tvDes"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvCate"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:maxLines="3"
                 android:text="Desc"
-                android:layout_marginStart="20dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="@+id/tvNama"
                 app:layout_constraintTop_toBottomOf="@+id/tvNama" />
 
-            <TextView
-                android:id="@+id/tvHarga"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Harga"
-                android:layout_marginStart="20dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/tvDes" />
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="@+id/tvCate"
+                app:layout_constraintTop_toBottomOf="@+id/tvCate">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp." />
+
+                <TextView
+                    android:id="@+id/tvHarga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Harga"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDes" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btn"
@@ -65,7 +88,7 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Button"
+                android:text="Add to Cart"
                 android:layout_marginHorizontal="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline"

@@ -1,10 +1,12 @@
 package com.thrq.bitebox.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.thrq.bitebox.activity.FoodDetailActivity
 import com.thrq.bitebox.databinding.LayoutFoodItemBinding
 import com.thrq.bitebox.model.AddFoodModel
 
@@ -28,9 +30,15 @@ class FoodAdapter(val context: Context, val list : ArrayList<AddFoodModel>)
 
         Glide.with(context).load(data.foodCoverImg).into(holder.binding.imageView)
         holder.binding.tvNama.text = data.foodName
-        holder.binding.tvDes.text = data.foodDesc
+        holder.binding.tvCate.text = data.foodCategory
         holder.binding.tvHarga.text = data.foodPrice
 
         holder.binding.btn.text = data.foodPrice
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(context, FoodDetailActivity::class.java)
+            intent.putExtra("id", list[position].foodId)
+            context.startActivity(intent)
+        }
     }
 }

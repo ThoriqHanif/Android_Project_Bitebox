@@ -3,7 +3,6 @@ package com.thrq.bitebox.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.transition.Slide
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -13,7 +12,7 @@ import com.google.firebase.ktx.Firebase
 import com.thrq.bitebox.MainActivity
 import com.thrq.bitebox.R
 import com.thrq.bitebox.databinding.ActivityFoodDetailBinding
-import com.thrq.bitebox.roomdb.AppDatabases
+import com.thrq.bitebox.roomdb.AppDatabase
 import com.thrq.bitebox.roomdb.FoodDao
 import com.thrq.bitebox.roomdb.FoodModel
 import kotlinx.coroutines.Dispatchers
@@ -32,9 +31,9 @@ class FoodDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    private fun getFooodDetails(fooId: String?) {
+    private fun getFooodDetails(foodId: String?) {
         Firebase.firestore.collection("foods")
-            .document(fooId!!).get().addOnSuccessListener {
+            .document(foodId!!).get().addOnSuccessListener {
                 val list = it.get("foodImages") as ArrayList<String>
                 val name = it.getString("foodName")
                 val foodPrice = it.getString("foodPrice")
@@ -49,7 +48,7 @@ class FoodDetailActivity : AppCompatActivity() {
                     slideList.add(SlideModel(data, ScaleTypes.FIT))
                 }
 
-                cartAction(fooId, name, foodPrice, it.getString("foodCoverImg"))
+                cartAction(foodId, name, foodPrice, it.getString("foodCoverImg"))
 
                 binding.slider.setImageList(slideList)
             } .addOnFailureListener {
@@ -57,40 +56,44 @@ class FoodDetailActivity : AppCompatActivity() {
             }
     }
 
-    private fun cartAction(fooId: String, name: String?, foodPrice: String?, coverImg: String?) {
+    private fun cartAction(foodId: String, name: String?, foodPrice: String?, coverImg: String?) {
 
-        val foodDao = AppDatabases.getInstance(this).foodDao()
+        val foodDao = AppDatabase.getInstance(this).foodDao()
 
-        if (foodDao.isExit(fooId) != null){
+        if (foodDao.isExit(foodId) != null){
             binding.tvAddtoCart.text = "Go to Cart"
         }else{
             binding.tvAddtoCart.text = "Add to Cart"
         }
 
         binding.tvAddtoCart.setOnClickListener{
-            if (foodDao.isExit(fooId)!= null){
+            if (foodDao.isExit(foodId)!= null){
                 openCart()
             }else{
-                addToCart(foodDao, fooId, name, foodPrice, coverImg)
+                addToCart(foodDao, foodId, name, foodPrice, coverImg)
             }
         }
     }
 
-    private fun openCart() {
-        val preferences = this.getSharedPreferences("info", MODE_PRIVATE)
-        val  editor = preferences.edit()
-        editor.putBoolean("isCart", true)
-        editor.apply()
-
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
-    }
-
-    private fun addToCart(foodDao: FoodDao, fooId: String, name: String?, foodPrice: String?, coverImg: String?) {
-        val data = FoodModel(fooId, name, coverImg, foodPrice)
+    private fun addToCart(foodDao: FoodDao, foodId: String, name: String?, foodPrice: String?, coverImg: String?) {
+        val data = FoodModel(foodId, name, coverImg, foodPrice)
         lifecycleScope.launch(Dispatchers.IO){
             foodDao.insertFood(data)
             binding.tvAddtoCart.text = "Go to Cart"
         }
     }
+
+    private fun openCart() {
+        val preference = this.getSharedPreferences("info", MODE_PRIVATE)
+        val  editor = preference.edit()
+        editor.putBoolean("isCart", true)
+        editor.apply()
+
+
+
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
+
+
 }

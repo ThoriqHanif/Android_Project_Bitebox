@@ -6,20 +6,21 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [FoodModel::class], version = 1)
-abstract class AppDatabases : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
     companion object{
-        private var database : AppDatabases? = null
+        private var database : AppDatabase? = null
         private val DATABASE_NAME = "bitebox"
 
         @Synchronized
-        fun getInstance (context: Context): AppDatabases{
+        fun getInstance (context: Context): AppDatabase{
             if (database == null){
                 database = Room.databaseBuilder(
                     context.applicationContext,
-                    AppDatabases::class.java,
+                    AppDatabase::class.java,
                     DATABASE_NAME
-                ).allowMainThreadQueries()
+                )
+                    .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()
                     .build()
             }

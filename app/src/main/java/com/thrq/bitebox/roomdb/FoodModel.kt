@@ -11,10 +11,10 @@ data class FoodModel(
     @PrimaryKey
     @Nonnull
     val foodId: String,
-    @ColumnInfo("foodName")
+    @ColumnInfo(name = "foodName")
     val foodName: String? = "",
-    @ColumnInfo("foodImages")
+    @ColumnInfo(name = "foodImages")
     val foodImages: String? = "",
-    @ColumnInfo("foodPrice")
+    @ColumnInfo(name ="foodPrice")
     val foodPrice: String? = "",
 )

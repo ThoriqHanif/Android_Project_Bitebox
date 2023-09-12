@@ -1,12 +1,14 @@
 package com.thrq.bitebox.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.thrq.bitebox.R
+import com.thrq.bitebox.activity.CategoryActivity
 import com.thrq.bitebox.databinding.LayoutCategoryItemBinding
 import com.thrq.bitebox.model.CategoryModel
 
@@ -28,5 +30,11 @@ class CategoryAdapter(var context : Context, val list: ArrayList<CategoryModel>)
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         holder.binding.tvCategory.text = list[position].cate
         Glide.with(context).load(list[position].img).into(holder.binding.ivCategory)
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(context, CategoryActivity::class.java)
+            intent.putExtra("cate", list[position].cate)
+            context.startActivity(intent)
+        }
     }
 }

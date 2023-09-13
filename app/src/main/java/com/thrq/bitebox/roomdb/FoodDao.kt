@@ -8,16 +8,15 @@ import androidx.room.Query
 
 @Dao
 interface FoodDao {
+        @Insert
+         fun insertFood(food : FoodModel)
 
-    @Insert
-     fun insertFood(food : FoodModel)
+        @Delete
+         fun deleteFood(food : FoodModel)
 
-    @Delete
-     fun deleteFood(food : FoodModel)
+        @Query("SELECT * FROM foods")
+        fun getAllFood() : LiveData<List<FoodModel>>
 
-    @Query("SELECT * FROM foods")
-    fun getAllFood() : LiveData<List<FoodModel>>
-
-    @Query("SELECT * FROM foods WHERE foodId = :id")
-    fun isExit(id : String) : FoodModel
-}
+        @Query("SELECT * FROM foods WHERE foodId = :id")
+        fun isExit(id : String) : FoodModel
+    }

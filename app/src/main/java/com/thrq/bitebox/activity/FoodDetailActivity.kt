@@ -77,9 +77,13 @@ class FoodDetailActivity : AppCompatActivity() {
 
     private fun addToCart(foodDao: FoodDao, foodId: String, name: String?, foodPrice: String?, coverImg: String?) {
         val data = FoodModel(foodId, name, coverImg, foodPrice)
-        lifecycleScope.launch(Dispatchers.IO){
-            foodDao.insertFood(data)
-            binding.tvAddtoCart.text = "Go to Cart"
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                foodDao.insertFood(data)
+                binding.tvAddtoCart.text = "Go to Cart"
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 

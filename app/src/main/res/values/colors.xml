@@ -4,7 +4,19 @@
     <color name="white">#FFFFFFFF</color>
     <color name="purple">#673AB7</color>
 
+    <color name="background">#E8F0F0F0</color>
 
-    <color name="colorPrimary">#4423E4</color>
-    <color name="colorSecondary">#320EE3</color>
+
+    <color name="colorPrimary">#74B946</color>
+    <color name="colorSecondary">#8DD85C</color>
+
+    <color name="colorTextPrimary">#FF000000</color>
+    <color name="textDesc">#808080</color>
+
+
+
+    <color name="colorCardPrimary">#FFFFFFFF</color>
+    <color name="colorCardSc">#C4C4C4</color>
+
+
 </resources>

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.thrq.bitebox.activity.AddressActivity
 import com.thrq.bitebox.R
+import com.thrq.bitebox.activity.CategoryActivity
 import com.thrq.bitebox.databinding.LayoutCategoryItemBinding
 import com.thrq.bitebox.model.CategoryModel
 
@@ -32,7 +33,7 @@ class CategoryAdapter(var context : Context, val list: ArrayList<CategoryModel>)
         Glide.with(context).load(list[position].img).into(holder.binding.ivCategory)
 
         holder.itemView.setOnClickListener{
-            val intent = Intent(context, AddressActivity::class.java)
+            val intent = Intent(context, CategoryActivity::class.java)
             intent.putExtra("cate", list[position].cate)
             context.startActivity(intent)
         }

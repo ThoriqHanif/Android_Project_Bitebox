@@ -3,6 +3,7 @@
     <style name="Base.Theme.Bitebox" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
 <!--         <item name="colorPrimary">@color/black</item>-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
     <style name="Theme.Bitebox" parent="Base.Theme.Bitebox" />
 </resources>

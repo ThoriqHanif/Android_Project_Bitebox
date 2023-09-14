@@ -68,17 +68,17 @@ class AddressActivity : AppCompatActivity() {
 
     private fun loadUserInfo() {
         Firebase.firestore.collection("users")
-            .document(preferences.getString("number", "")!!)
+            .document(preferences.getString("number", "")!! )
             .get().addOnSuccessListener {
-                binding.etNama.setText(it.getString("userName"))
                 binding.etNoHp.setText(it.getString("userNoHp"))
+                binding.etNama.setText(it.getString("userName"))
                 binding.etProv.setText(it.getString("provinsi"))
                 binding.etKota.setText(it.getString("kota"))
                 binding.etKec.setText(it.getString("desa"))
                 binding.etCode.setText(it.getString("pinCode"))
             }
             .addOnFailureListener {
-
+                Toast.makeText(this, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show()
             }
     }
 }

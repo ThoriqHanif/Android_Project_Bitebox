@@ -29,6 +29,10 @@ class FoodDetailActivity : AppCompatActivity() {
 
         getFooodDetails(intent.getStringExtra("id"))
         setContentView(binding.root)
+
+        binding.ivBack.setOnClickListener{
+            startActivity(Intent(this, MainActivity::class.java))
+        }
     }
 
     private fun getFooodDetails(foodId: String?) {

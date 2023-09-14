@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import com.thrq.bitebox.MainActivity
 import com.thrq.bitebox.activity.AddressActivity
 import com.thrq.bitebox.adapter.CartAdapter
 import com.thrq.bitebox.databinding.FragmentCartBinding
@@ -22,6 +23,11 @@ class CartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+//        binding.ivBack.setOnClickListener{
+//            val intent = Intent(context, MainActivity::class.java)
+//            startActivity(intent)
+//        }
 
         binding = FragmentCartBinding.inflate(layoutInflater)
         val preference = requireContext().getSharedPreferences("info", AppCompatActivity.MODE_PRIVATE)

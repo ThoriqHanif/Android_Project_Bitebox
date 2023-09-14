@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/background"
     tools:context=".fragment.CartFragment">
 
     <LinearLayout
@@ -24,13 +25,14 @@
         <androidx.cardview.widget.CardView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:backgroundTint="#B4B4B4"
+            android:backgroundTint="@color/colorCardPrimary"
             app:cardCornerRadius="15dp">
 
             <ImageView
                 android:id="@+id/ivBack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:src="@drawable/baseline_chevron_left_24"
                 android:layout_gravity="center" />
         </androidx.cardview.widget.CardView>
 
@@ -41,7 +43,7 @@
             android:layout_marginRight="10dp"
             android:text="Keranjang Anda"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -64,6 +66,7 @@
         android:layout_margin="20dp"
         app:cardCornerRadius="20dp"
         android:elevation="5dp"
+        android:backgroundTint="@color/colorCardPrimary"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -88,6 +91,7 @@
                 android:text="Total : Rp. 20000"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginStart="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +104,10 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="Checkout"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
                 app:cornerRadius="10dp"
+                android:backgroundTint="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/jumlahItem" />
